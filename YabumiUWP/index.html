@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>Yabumi</title>
+
+    <!-- WinJS -->
+    <link href="libraries/WinJS/css/ui-light.css" rel="stylesheet" />
+    <script async src="libraries/WinJS/js/base.min.js"></script>
+    <script defer src="libraries/WinJS/js/ui.min.js"></script>
+
+    <!-- jQuery -->
+    <script async src="libraries/jQuery/jquery.min.js"></script>
+
+    <!-- App -->
+    <link href="app/css/winjs-fix.css" rel="stylesheet" />
+    <link href="app/css/splitview.css" rel="stylesheet" />
+    <script defer src="app/js/common.js"></script>
+    <script defer src="app/js/index.js"></script>
+</head>
+<body class="win-type-body">
+    <!-- Title -->
+    <h1 id="title"></h1>
+
+    <!-- AppBar -->
+    <div id="appbar-container"></div>
+
+    <!-- SplitView -->
+    <div id="splitview" class="splitview" data-win-control="WinJS.UI.SplitView">
+        <!-- Pane -->
+        <div>
+            <div class="header">
+                <button class="win-splitviewpanetoggle"
+                        data-win-control="WinJS.UI.SplitViewPaneToggle"
+                        data-win-options="{ splitView: select('.splitview') }"></button>
+            </div>
+
+            <div class="nav-commands">
+                <a data-win-control="WinJS.UI.SplitViewCommand"
+                   data-win-options="{ icon: 'home' }"
+                   data-win-res="{ winControl: { label: 'history', tooltip: 'history' } }"
+                   href="#history"></a>
+
+                <a data-win-control="WinJS.UI.SplitViewCommand"
+                   data-win-options="{ icon: 'emoji2' }"
+                   data-win-res="{ winControl: { label: 'send feedback', tooltip: 'send feedback' } }"
+                   href="https://github.com/webnium/yabumi-universal-app/issues/new"></a>
+                
+                <a data-win-control="WinJS.UI.SplitViewCommand"
+                   data-win-options="{ icon: 'settings' }"
+                   data-win-res="{ winControl: { label: 'settings', tooltip: 'shortcut-settings' } }"
+                   href="#settings"></a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div id="fragment" class="content">...</div>
+    </div>
+</body>
+</html>

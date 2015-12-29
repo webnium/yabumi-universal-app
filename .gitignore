@@ -1,0 +1,10 @@
+/.vs
+/YabumiUWP/*.pfx
+/YabumiUWP/*.user
+/YabumiUWP/bin
+/YabumiUWP/bld
+/YabumiUWP/AppPackages
+/YabumiUWP/BundleArtifacts
+/YabumiUWP/*.appx
+/YabumiUWP/Package.StoreAssociation.xml
+/YabumiUWP/_pkginfo.txt

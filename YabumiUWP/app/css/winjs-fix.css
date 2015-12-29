@@ -1,0 +1,26 @@
+﻿.win-commandingsurface .win-commandingsurface-actionarea .win-commandingsurface-overflowbutton {
+    width: 48px;
+    line-height: 48px;
+}
+
+.win-splitview-pane-hidden .win-navbarcommand-label {
+    visibility: hidden;
+}
+
+.win-splitviewcommand-button-content > .win-splitviewcommand-icon {
+    margin-top: 16px;
+    margin-right: 27px;
+}
+
+.win-splitviewcommand-button-content > .win-splitviewcommand-label {
+    margin-top: 14px;
+}
+
+a.win-splitviewcommand {
+    cursor: default;
+    text-decoration: none;
+}
+
+button.win-command .win-label {
+    font-family: "Ebrima", "Nirmala UI", "Gadugi", "Yu Gothic UI", "Leelawadee UI", "Malgun Gothic", "Javanese Text", "Segoe MDL2 Assets", "Microsoft YaHei UI", "Microsoft JhengHei UI";
+}

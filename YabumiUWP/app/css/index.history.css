@@ -1,0 +1,102 @@
+﻿div#images-container {
+    margin: 23px 22px 23px 23px;
+}
+
+    div#images-container > div {
+        line-height: 0;
+        margin-bottom: 2px;
+        text-align: left;
+    }
+
+        div#images-container > div > div {
+            position: relative;
+            display: inline-block;
+            background-color: #eaeaea;
+            margin-left: 2px;
+            overflow: hidden;
+        }
+
+        div#images-container > div > div:first-child {
+            margin-left: 0;
+        }
+
+            div#images-container > div > div > progress {
+                position: absolute;
+                top: 0;
+                right: 0;
+                left: 0;
+                border: none;
+                width: auto;
+                height: 2px;
+                color: #ec6d51;
+                background-color: #ddd;
+            }
+
+            div#images-container > div > div > img {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                transition: opacity 0.25s ease;
+                box-sizing: border-box;
+            }
+            
+            div#images-container > div > div:focus::after,
+            div#images-container > div > div:hover::after {
+                display: block;
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                box-shadow: inset 0 0 0 2px rgba(0,0,0,0.4);
+            }
+
+            div#images-container > div > div:active::after {
+                box-shadow: inset 0 0 0 2px rgba(0,0,0,0.6);
+            }
+
+            div#images-container > div > div > img.visible {
+                opacity: 1;
+            }
+            
+            div#images-container > div > div > img.pdf,
+            div#images-container > div > div > img.psd {
+                opacity: 1;
+                padding: 20px;
+            }
+
+            div#images-container > div > div > div.expires {
+                z-index: 1;
+                position: absolute;
+                top: 0;
+                right: 0;
+                overflow: hidden;
+                color: #e6b422;
+                background-color: transparent;
+                width: 0;
+                height: 0;
+                border: 15px solid transparent;
+                border-top-color: #fcc800;
+                border-right-color: #fcc800;
+                opacity: 0.9;
+            }
+
+            div#images-container > div > div:hover > div.expires {
+                border:none;
+                width: auto;
+                height: auto;
+                line-height: 16px;
+                padding: 5px 10px;
+                left: 0;
+                color: #111;
+                text-align: right;
+                font-size: 11px;
+                font-weight: bold;
+                background-color: #fcc800;
+            }

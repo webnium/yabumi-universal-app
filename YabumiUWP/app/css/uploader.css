@@ -1,0 +1,107 @@
+﻿body {
+}
+
+#appbar-container {
+    z-index: 1004;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 48px;
+}
+
+    #appbar-container > div {
+        position: absolute !important;
+        top: 0;
+        right: 0;
+        left: 0;
+        width: auto;
+    }
+
+.win-commandingsurface .win-commandingsurface-actionarea {
+    background-color: #000;
+}
+
+.win-appbar-opened .win-commandingsurface .win-commandingsurface-actionarea {
+    background-color: #222;
+}
+
+#appbar-container .cancel {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#appbar-container .cancel:not(:disabled) span {
+    color: #f1605b !important;
+}
+
+#appbar-container .yes:not(:disabled) span {
+    color: #88e755 !important;
+}
+
+div#preview {
+    position: absolute;
+    top: 48px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+    div#preview > progress {
+        position: absolute;
+        top: calc(50vh - 48px - 25px);
+        left: calc(50vw - 25px);
+        width: 40px;
+        height: 40px;
+        color: #ec6d51;
+        background-color: rgba(0,0,0,0.8);
+        border-radius: 5px;
+        padding: 5px;
+    }
+
+    div#preview > h3 {
+        position: absolute;
+        top: calc(50vh - 48px - 12px);
+        left: 0;
+        right: 0;
+        text-align: center;
+        line-height: 24px;
+        font-size: 24px;
+        color: #777;
+    }
+
+    div#preview > div.cropping-container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0,0,0,0.65);
+    }
+
+        div#preview > div.cropping-container > canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: move;
+        }
+
+        div#preview > div.cropping-container > div.cropping-handle {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            margin-top: -14px;
+            margin-left: -14px;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px #000;
+            background-color: #fff;
+            box-sizing: border-box;
+            cursor: move;
+        }
+
+        div#preview > div.cropping-container > div.cropping-handle:hover {
+            background-color: #d7d7d7;
+        }

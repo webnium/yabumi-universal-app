@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+
+  <CommandSet xml:lang="en-us" Name="YabumiVoiceCommandSet_en-us">
+    <AppName>Yabumi</AppName>
+    <Example>Show my screenshots</Example>
+
+    <Command Name="showMyScreenshots">
+      <Example>Show my screenshots</Example>
+      <ListenFor>{show} [my] {images}</ListenFor>
+      <Feedback>Showing your {images}</Feedback>
+      <Navigate />
+    </Command>
+
+    <Command Name="uploadFromCamera">
+      <Example>Take a picture</Example>
+      <ListenFor>Take [a] {picture}</ListenFor>
+      <Feedback>Take a {picture}</Feedback>
+      <Navigate />
+    </Command>
+
+    <Command Name="uploadFromFile">
+      <Example>Upload a image</Example>
+      <ListenFor>Upload [a] {image}</ListenFor>
+      <Feedback>Upload a {image}</Feedback>
+      <Navigate />
+    </Command>
+
+    <PhraseList Label="show">
+      <Item>Show</Item>
+      <Item>View</Item>
+      <Item>Check</Item>
+    </PhraseList>
+    
+    <PhraseList Label="images">
+      <Item>Images</Item>
+      <Item>Screenshots</Item>
+      <Item>Pictures</Item>
+      <Item>Photos</Item>
+      <Item>Files</Item>
+    </PhraseList>
+
+    <PhraseList Label="image">
+      <Item>Image</Item>
+      <Item>Screenshot</Item>
+      <Item>Picture</Item>
+      <Item>Photo</Item>
+      <Item>File</Item>
+    </PhraseList>
+
+    <PhraseList Label="picture">
+      <Item>Picture</Item>
+      <Item>Photo</Item>
+      <Item>Video</Item>
+      <Item>Movie</Item>
+    </PhraseList>
+  </CommandSet>
+
+  <CommandSet xml:lang="ja-jp" Name="YabumiVoiceCommandSet_ja-jp">
+    <AppName>Yabumi</AppName>
+    <Example>写真を撮影</Example>
+
+    <Command Name="showMyScreenshots">
+      <Example>スクリーンショットを表示</Example>
+      <ListenFor>{image}[を]{show}</ListenFor>
+      <Feedback>{image}を表示します</Feedback>
+      <Navigate />
+    </Command>
+
+    <Command Name="uploadFromCamera">
+      <Example>写真を撮影</Example>
+      <ListenFor>{picture}[を]{take}</ListenFor>
+      <Feedback>{picture}を{take}</Feedback>
+      <Navigate />
+    </Command>
+
+    <Command Name="uploadFromFile">
+      <Example>画像をアップロード</Example>
+      <ListenFor>{image}[を]アップロード</ListenFor>
+      <Feedback>{image}をアップロード</Feedback>
+      <Navigate />
+    </Command>
+
+    <PhraseList Label="show">
+      <Item>表示</Item>
+      <Item>確認</Item>
+      <Item>チェック</Item>
+    </PhraseList>
+
+    <PhraseList Label="image">
+      <Item>イメージ</Item>
+      <Item>スクリーンショット</Item>
+      <Item>ピクチャー</Item>
+      <Item>フォト</Item>
+      <Item>写真</Item>
+      <Item>画像</Item>
+      <Item>ファイル</Item>
+    </PhraseList>
+
+    <PhraseList Label="picture">
+      <Item>写真</Item>
+      <Item>フォト</Item>
+      <Item>映像</Item>
+      <Item>ビデオ</Item>
+    </PhraseList>
+
+    <PhraseList Label="take">
+      <Item>撮影</Item>
+      <Item>撮る</Item>
+    </PhraseList>
+  </CommandSet>
+
+</VoiceCommands>

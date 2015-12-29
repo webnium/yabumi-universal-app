@@ -1,0 +1,119 @@
+﻿body {
+}
+
+body > h1,
+#appbar-container .win-command:not(:disabled) span,
+#appbar-container .win-appbar-ellipsis {
+    color: #492017;
+}
+
+body > h1 {
+    display: inline-block;
+    position: absolute;
+    z-index: 1005;
+    top: 0px;
+    left: 72px;
+    margin: 0;
+    line-height: 48px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+@keyframes loading-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#appbar-container {
+    z-index: 1004;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 48px;
+    height: 48px;
+}
+
+    #appbar-container > div {
+        position: absolute !important;
+        top: 0;
+        right: 0;
+        left: 0;
+        width: auto;
+    }
+
+    #appbar-container .win-commandingsurface-actionarea {
+        padding-left: 100px;
+        background-color: #efefef;
+    }
+
+    #appbar-container button.loading > .win-commandicon {
+        animation: loading-spin 1s linear infinite;
+    }
+
+        #appbar-container button.loading > .win-commandicon > .win-commandimage {
+            color: #ec6d51;
+        }
+
+.splitview {
+    height: 100%;
+}
+
+    .splitview .win-splitview-pane {
+        background-color: #333;
+    }
+    
+    .splitview .win-splitview-pane > div.header {
+        background-color: #ec6d51;
+    }
+
+    .splitview.win-splitview.win-splitview-pane-opened.win-splitview-placementleft .win-splitview-pane,
+    .splitview.win-splitview.win-splitview-pane-opened.win-splitview-placementright .win-splitview-pane {
+        width: 240px;
+    }
+
+    .splitview .win-splitview-pane button.win-splitviewpanetoggle,
+    .splitview .win-splitview-pane button.win-splitviewpanetoggle:hover,
+    .splitview .win-splitview-pane .nav-commands > * > div {
+        color: white;
+    }
+
+    .splitview .win-splitview-pane button.win-splitviewpanetoggle:hover,
+    .splitview .win-splitview-pane .nav-commands > * > div:hover {
+        background-color: rgba(255,255,255,0.1);
+    }
+
+    .splitview .win-splitview-pane button.win-splitviewpanetoggle:active,
+    .splitview .win-splitview-pane .nav-commands > * > div:active {
+        background-color: rgba(255,255,255,0.2);
+    }
+
+    .splitview .win-splitview-pane .nav-commands > .selected {
+        background-color: rgba(236,109,81,0.5);
+    }
+
+    .splitview .win-splitview-pane .nav-commands > a[href="#settings"] {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-top: 1px solid #555;
+    }
+
+    .splitview .win-splitview-content {
+        background-color: #f7f7f7;
+        margin-top: 0;
+    }
+
+    .splitview .content {
+        position: absolute;
+        top: 48px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: 0;
+        overflow-y: auto;
+    }

@@ -1,0 +1,372 @@
+﻿body {
+}
+
+body > h1 {
+    display: inline-block;
+    position: absolute;
+    z-index: 1005;
+    top: 0px;
+    left: 24px;
+    margin: 0;
+    line-height: 48px;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+progress {
+    color: #ec6d51 !important;
+}
+
+progress#progress {
+    position: absolute;
+    z-index: 1003;
+    top: 48px;
+    right: 0;
+    left: 0;
+    width: auto;
+    height: 4px;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+progress#progress.hide {
+    opacity: 0;
+}
+
+#loading-mask {
+    position: absolute;
+    z-index: 1003;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255,255,255,0.5);
+}
+
+    #loading-mask > progress {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -20px;
+        margin-left: -20px;
+        width: 40px;
+        height: 40px;
+    }
+
+#appbar-container {
+    z-index: 1004;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 48px;
+}
+
+    #appbar-container > div {
+        position: absolute !important;
+        top: 0;
+        right: 0;
+        left: 0;
+        width: auto;
+    }
+
+.win-commandingsurface .win-commandingsurface-actionarea {
+    padding-left: 200px;
+    background-color: rgba(255,255,255,0.8);
+}
+
+.win-appbar-opened .win-commandingsurface .win-commandingsurface-actionarea {
+    background-color: #fafafa;
+}
+
+.win-command.expiration span {
+    color: #e08505 !important;
+}
+
+.win-command.delete span {
+    color: #d2322d !important;
+}
+
+#controls,
+#navs {
+    z-index: 1002;
+    position: absolute;
+    right: 11px;
+    bottom: 11px;
+    transition: opacity ease 0.2s;
+}
+
+#navs {
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 0;
+    bottom: auto;
+}
+
+#controls.mute,
+#navs.mute {
+    opacity: 0.4;
+    transition: opacity ease 0.2s 0.1s;
+}
+
+#controls.hide,
+#navs.hide {
+    opacity: 0;
+}
+
+    #controls button,
+    #navs button {
+        font-family: 'Segoe MDL2 Assets', 'Symbols';
+        font-size: 16px;
+        line-height: 16px;
+        padding: 8px 14px;
+        vertical-align: top;
+        display: inline-block;
+        border: none;
+        background: rgba(255,255,255,0.6);
+    }
+
+    #controls button.zoom-in,
+    #controls button.zoom-out {
+        font-size: 15px;
+    }
+
+    #navs button.prev,
+    #navs button.next {
+        position: absolute;
+        top: calc(50vh - 18px);
+        height: 36px;
+        padding: 10px 5px;
+        font-size: 11px;
+        line-height: 16px;
+    }
+    #navs button.prev {
+        left: 0;
+    }
+    #navs button.next {
+        right: 0;
+    }
+    
+    #controls button:hover:not(:disabled),
+    #navs button:hover:not(:disabled) {
+        background-color: rgba(230,230,230,0.6);
+    }
+    
+    #controls button:active:not(:disabled),
+    #navs button:active:not(:disabled) {
+        background-color: rgba(200,200,200,0.6);
+    }
+    
+    #controls button:disabled,
+    #navs button:disabled {
+        color: rgba(0,0,0,0.25);
+    }
+
+#image-container {
+    position: absolute;
+    top: 48px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    cursor: url(../../images/grasping-hand-open.cur), default;
+    transition: all ease 0.2s;
+}
+
+#image-container:active {
+    cursor: url(../../images/grasping-hand-closed.cur), default;
+}
+
+#image-container.swiping {
+    transition: none;
+}
+
+#image-container.hide {
+    opacity: 0;
+}
+
+#image-container::before,
+#image-container::after {
+    position: absolute;
+    z-index: -1;
+    top: calc(50vh - 48px - 35px);
+    font-family: 'Segoe MDL2 Assets', 'Symbols';
+    font-size: 30px;
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+    padding: 20px;
+    color: #000;
+}
+
+#image-container::before {
+    left: calc(-70px);
+    content: '\E76B';
+}
+
+#image-container::after {
+    right: calc(-70px);
+    content: '\E76C';
+}
+
+    #image-container > img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        -ms-user-select: none;
+        touch-action: none;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+    }
+
+    #image-container > img.mute {
+        opacity: 0.4;
+    }
+
+    #image-container > img.hide {
+        opacity: 0;
+    }
+
+    #image-container > img.deleting {
+        opacity: 0;
+        transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+#expiration-ribbon {
+    z-index: 1;
+    position: absolute;
+    top: 48px;
+    right: 0;
+    overflow: hidden;
+    color: #e6b422;
+    background-color: transparent;
+    width: 0;
+    height: 0;
+    border: 17px solid transparent;
+    border-top-color: #fcc800;
+    border-right-color: #fcc800;
+    opacity: 0.9;
+    transition: ease 0.2s;
+    transition-property: color, opacity;
+}
+
+#expiration-ribbon.mute {
+    opacity: 0.2;
+}
+
+#expiration-ribbon.hide {
+    opacity: 0;
+}
+
+#expiration-ribbon:hover {
+    border:none;
+    width: auto;
+    height: auto;
+    padding: 10px 15px;
+    left: 0;
+    color: #000;
+    text-align: center;
+    line-height: 14px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #fcc800;
+    background-image: linear-gradient(
+                          -45deg,
+                          #fcc700 25%,
+                          #ecba00 25%, #ecba00 50%,
+                          #fcc700 50%, #fcc700 75%,
+                          #ecba00 75%, #ecba00
+                      );
+    background-size: 20px 20px;
+}
+
+#info-container {
+    position: absolute;
+    z-index: 3;
+    top: 48px;
+    bottom: 0;
+    left: -20px;
+    width: 320px;
+    background-color: rgba(255,255,255,0.85);
+    word-break: break-all;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-weight: bold;
+    overflow-y: auto;
+    transition: all ease 0.25s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#info-container.show {
+    left: 0;
+    opacity: 1;
+    pointer-events: all;
+}
+
+    #info-container dl {
+        margin: 0;
+    }
+
+    #info-container dt {
+        color: #777;
+    }
+
+    #info-container dd {
+        margin: 0 0 20px 0;
+        cursor: text;
+        -webkit-user-select: text;
+        -ms-user-select: text;
+    }
+
+    #info-container dd:last-child {
+        font-size: 11px;
+        font-weight: normal;
+    }
+
+    #info-container dd span#bitrate {
+        margin-left: 5px;
+        font-weight: normal;
+    }
+
+    #info-container dd span#bitrate::before {
+        content: '(';
+    }
+
+    #info-container dd span#bitrate::after {
+        content: ')';
+    }
+
+body > button.file-icon {
+    position: absolute;
+    z-index: 2;
+    top: 73px;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 24px 24px;
+    background-color: cornflowerblue;
+    border: none;
+    transition: all ease 0.2s;
+    border-radius: 50%;
+}
+
+body > button.file-icon.pdf {
+    background-image: url(../../images/thumbnail-pdf.svg);
+}
+
+body > button.file-icon.psd {
+    background-image: url(../../images/thumbnail-psd.svg);
+}
+
+body > button.file-icon:hover {
+    box-shadow: 0 0 0 2px skyblue;
+    background-color: skyblue;
+}
+
+body > button.file-icon:active {
+    box-shadow: 0 0 0 4px skyblue;
+}
