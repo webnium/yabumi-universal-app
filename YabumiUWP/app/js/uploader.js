@@ -1,5 +1,5 @@
 ﻿/*
-   Copyright 2015 Webnium. All Rights Reserved.
+   Copyright 2016 Webnium. All Rights Reserved.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -868,8 +868,7 @@
             Uploader.shareOperation.reportStarted();
         }
 
-        var version = Windows.ApplicationModel.Package.current.id.version;
-        var versionString = version.major + '.' + version.minor + '.' + version.build + '.' + version.revision;
+        var versionString = Yabumi.Util.getVersionString();
 
         var BackgroundTransfer = Windows.Networking.BackgroundTransfer;
 

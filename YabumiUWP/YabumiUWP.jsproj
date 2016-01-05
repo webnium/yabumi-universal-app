@@ -64,6 +64,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <Content Include="app\css\index.history.css" />
+    <Content Include="app\css\index.settings.css" />
     <Content Include="app\css\splitview.css" />
     <Content Include="app\css\uploader.css" />
     <Content Include="app\css\viewer.css" />
@@ -71,10 +72,12 @@
     <Content Include="app\js\index.history.js" />
     <Content Include="app\js\index.js" />
     <Content Include="app\js\common.js" />
+    <Content Include="app\js\index.settings.js" />
     <Content Include="app\js\uploader.js" />
     <Content Include="app\js\url-protocol.js" />
     <Content Include="app\js\viewer.js" />
     <Content Include="index.history.html" />
+    <Content Include="index.settings.html" />
     <Content Include="libraries\jQuery\jquery.min.js" />
     <Content Include="libraries\jQuery\jquery.timeago.js" />
     <Content Include="libraries\psd.js\psd.js" />

@@ -72,6 +72,7 @@
     "screenshot": "Screenshot",
     "share": "Share",
     "print": "Print",
+    "general": "General",
 
     "shortcut-reload": "Reload (Ctrl+R)",
     "shortcut-take-a-screenshot": "Take a Screenshot (S)",
@@ -101,7 +102,6 @@
     "note-ssl-secure": "Communication is absolutely encrypted by SSL.",
     "note-delete-image": "Are you sure you want to delete this image?",
     "note-api-root": "These fields are intended for Yabumi Pro or Enterprise and other supported servers.",
-    "note-api-root-https": "https://",
     
     "notify-url-to-clipboard": "The URL has copied to clipboard.",
     "notify-image-to-clipboard": "The Image has copied to clipboard.",

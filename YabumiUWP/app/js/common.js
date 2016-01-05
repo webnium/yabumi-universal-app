@@ -1,5 +1,5 @@
 ﻿/*
-   Copyright 2015 Webnium. All Rights Reserved.
+   Copyright 2016 Webnium. All Rights Reserved.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -277,7 +277,24 @@
             if (Windows) {
                 return Windows.System.Profile.AnalyticsInfo.versionInfo.deviceFamily;
             } else {
-                return '';
+                return 'Browser';
+            }
+        },
+        getVersionString: function () {
+
+            if (Windows) {
+                var version = Windows.ApplicationModel.Package.current.id.version;
+                return version.major + '.' + version.minor + '.' + version.build + '.' + version.revision;
+            } else {
+                return '2';
+            }
+        },
+        getLongProductName: function () {
+
+            if (Windows) {
+                return 'Yabumi for Universal Windows Platform';
+            } else {
+                return 'Yabumi for Web';
             }
         },
         getImages: function (isIdStringOnly) {
@@ -318,7 +335,7 @@
             if (roamingSettings) {
                 return roamingSettings.values[key];
             } else {
-                return localStorage.getItem(key);
+                return JSON.parse(localStorage.getItem('roamingSetting.' + key));
             }
         },
         setRoamingSetting(key, val) {
@@ -327,9 +344,9 @@
                 roamingSettings.values[key] = val;
             } else {
                 if (val === null) {
-                    localStorage.removeItem(key);
+                    localStorage.removeItem('roamingSetting.' + key);
                 } else {
-                    localStorage.setItem(key, val);
+                    localStorage.setItem('roamingSetting.' + key, JSON.stringify(val));
                 }
             }
         },
@@ -338,7 +355,7 @@
             if (localSettings) {
                 return localSettings.values[key];
             } else {
-                return localStorage.getItem(key);
+                return JSON.parse(localStorage.getItem('localSetting.' + key));
             }
         },
         setLocalSetting(key, val) {
@@ -347,9 +364,9 @@
                 localSettings.values[key] = val;
             } else {
                 if (val === null) {
-                    localStorage.removeItem(key);
+                    localStorage.removeItem('localSetting.' + key);
                 } else {
-                    localStorage.setItem(key, val);
+                    localStorage.setItem('localSetting.' + key, JSON.stringify(val));
                 }
             }
         }

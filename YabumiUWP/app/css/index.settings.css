@@ -1,0 +1,94 @@
+﻿body {
+}
+
+h2 {
+    margin: 15px 0;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+label {
+    display: block;
+    margin: 20px 0 0;
+}
+
+select {
+    display: block;
+    height: 32px;
+    border-width: 2px;
+    font-size: 15px;
+    padding: 5px;
+    margin: 15px 0;
+}
+
+input.sync-id {
+    display: block;
+    border: 2px solid #777;
+    font-size: 15px;
+    padding: 5px;
+    margin: 15px 0;
+    width: 200px;
+}
+
+input.sync-id:not(:disabled) {
+    width: 240px;
+}
+
+button.win-button.red:not(:disabled) {
+    color: #fff;
+    background-color: #d2322d;
+}
+
+button.win-button.blue:not(:disabled) {
+    color: #fff;
+    background-color: rgba(41, 143, 204, 1);
+}
+
+div.mask {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255,255,255,0.8);
+}
+
+    div.mask > progress.win-ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -20px;
+        margin-left: -20px;
+        width: 40px;
+        height: 40px;
+    }
+
+#settings-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.win-pivot > .win-pivot-header-area {
+    background-color: #eee;
+}
+
+.win-pivot .win-pivot-header, .win-pivot .win-pivot-header.win-pivot-header:hover:active {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.win-pivot button.win-pivot-header.win-pivot-header-selected {
+    font-weight: 700;
+}
+
+html.win-hoverable .win-pivot button.win-pivot-header:hover {
+    color: #000;
+}
+
+.privacy h1,
+.privacy h2 {
+    display: none;
+}

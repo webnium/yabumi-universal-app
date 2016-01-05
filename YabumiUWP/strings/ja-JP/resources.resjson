@@ -51,7 +51,7 @@
     "days": "日",
     "open image with system browser after upload": "アップロード後にシステムブラウザで画像を開く",
     "syncing key": "同期キー",
-    "get a new one": "新規生成",
+    "get a new one": "新しくつくる",
     "deactive on this client only": "このクライアントでのみ無効化",
     "deactive history syncing": "履歴同期を無効化",
     "purge syncing key": "同期キーを完全に消去",
@@ -72,6 +72,7 @@
     "screenshot": "スクリーンショット",
     "share": "共有",
     "print": "印刷",
+    "general": "全般",
 
     "shortcut-reload": "更新 (Ctrl+R)",
     "shortcut-take-a-screenshot": "スクリーンショットを撮影 (S)",
@@ -101,7 +102,6 @@
     "note-ssl-secure": "通信は完全にSSLで暗号化されます",
     "note-delete-image": "本当にこの画像を削除してもよろしいですか？",
     "note-api-root": "これらの項目は Yabumi Pro や Enterprise 等の特別にサポートされたサーバーを利用する場合にのみ設定します",
-    "note-api-root-https": "https://",
 
     "notify-url-to-clipboard": "URLがクリップボードにコピーされました",
     "notify-image-to-clipboard": "画像がクリップボードにコピーされました",
