@@ -431,7 +431,7 @@
                 // Swipe
                 (Math.abs(Viewer.Stat.swipeX) > (Viewer.View.imageContainer.clientWidth / 2)) ||
                 // Flick (testing)
-                (Math.abs(Viewer.Stat.pointer[e.pointerId.toString(10)].movementX / devicePixelRatio) > 20)
+                (Math.abs(Viewer.Stat.pointer[e.pointerId.toString(10)].movementX / devicePixelRatio) > 10)
             ) {
                 if (Viewer.Stat.swipeX > 0 && Viewer.View.prevButton.is(':visible')) {
                     $(Viewer.View.imageContainer).addClass('hide');
