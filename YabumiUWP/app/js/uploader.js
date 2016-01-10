@@ -264,7 +264,7 @@
 
         openPicker.fileTypeFilter.replaceAll(['.png', '.jpg', '.jpeg', '.gif', '.svg', '.pdf', '.psd', '.bmp']);
 
-        openPicker.pickSingleFileAsync().then(function (file) {
+        openPicker.pickSingleFileAsync().done(function (file) {
 
             if (file) {
                 Uploader.Stat.filename = file.name;
