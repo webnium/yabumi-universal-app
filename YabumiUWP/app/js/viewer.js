@@ -279,7 +279,7 @@
 
         localStorage.setItem('window.size', [window.innerWidth, window.innerHeight].join('x'));
 
-        panImage();
+        zoomImage();
     }
 
     // onWheelHandler()
@@ -1110,7 +1110,11 @@
                 (vh > ih) ? vh / ih : 1
             ) * 5;
 
-        if (ratio === 0) {
+        if (typeof ratio === 'undefined') {
+            // use current ratio
+            // this for when maxRatio or minRatio is changed
+            ratio = oldRatio;
+        } else if (ratio === 0) {
             // fit to window
             ratio = Math.min(vw / iw, vh / ih);
         } else if (ratio === -1) {
@@ -1139,11 +1143,15 @@
         }
 
         ratio = Math.max(Math.min(ratio, maxRatio), minRatio);
+        Viewer.Stat.zoom = ratio;
+
+        Viewer.Stat.panX = (Viewer.Stat.panX - dx) / oldRatio * ratio + dx;
+        Viewer.Stat.panY = (Viewer.Stat.panY - dy) / oldRatio * ratio + dy;
+
+        panImage();
 
         Viewer.View.image.style.width = (Viewer.Data.imageInfo.width * ratio) + 'px';
         Viewer.View.image.style.height = (Viewer.Data.imageInfo.height * ratio) + 'px';
-
-        Viewer.Stat.zoom = ratio;
 
         if (ratio === minRatio) {
             Viewer.Stat.zoomed = false;
@@ -1185,10 +1193,6 @@
             Viewer.View.expandButton.attr('title', _L('shortcut-fit-in-window'));
         }                                             
 
-        Viewer.Stat.panX = (Viewer.Stat.panX - dx) / oldRatio * ratio + dx;
-        Viewer.Stat.panY = (Viewer.Stat.panY - dy) / oldRatio * ratio + dy;
-
-        panImage();
     }
 
     function panImage(x, y) {
@@ -1208,37 +1212,13 @@
             y = Viewer.Stat.panY;
         }
 
-        if (vw > iw) {
-            x = 0;
-        }
-
-        if (vh > ih) {
-            y = 0;
-        }
+        // Centering if image container wider(taller) than image.
+        // Otherwise image container should be filled by image.
+        x = vw > iw ? 0 : Math.min(Math.max(x, ix), -ix);
+        y = vh > ih ? 0 : Math.min(Math.max(y, iy), -iy);
 
         var nix = ix + x,
             niy = iy + y;
-
-        // when on larger than view area.
-        if (vw <= iw) {
-            if (nix > 0) {
-                nix = 0;
-                x = -ix;
-            } else if (nix < vw - iw) {
-                nix = vw - iw;
-                x = ix;
-            }
-        }
-
-        if (vh <= ih) {
-            if (niy > 0) {
-                niy = 0;
-                y = -iy;
-            } else if (niy <= vh - ih) {
-                niy = vh - ih;
-                y = iy;
-            }
-        }
 
         Viewer.View.image.style.left = nix + 'px';
         Viewer.View.image.style.top = niy + 'px';
