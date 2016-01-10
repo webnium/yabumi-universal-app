@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="442666080FC00.YabumiUploader" Version="2.0.6.0" Publisher="CN=2383AF17-10A3-447D-B221-23DE7A5711FE" />
+  <Identity Name="442666080FC00.YabumiUploader" Version="2.0.7.0" Publisher="CN=2383AF17-10A3-447D-B221-23DE7A5711FE" />
   <mp:PhoneIdentity PhoneProductId="8c017c85-d618-46f2-a03f-7befc6467afa" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Yabumi</DisplayName>
@@ -33,6 +33,9 @@
         </uap:InitialRotationPreference>
       </uap:VisualElements>
       <Extensions>
+        <uap:Extension Category="windows.protocol" StartPage="url-protocol.html">
+          <uap:Protocol Name="yabumi" />
+        </uap:Extension>
         <uap:Extension Category="windows.shareTarget" StartPage="uploader.html">
           <uap:ShareTarget>
             <uap:SupportedFileTypes>
@@ -47,9 +50,6 @@
             </uap:SupportedFileTypes>
             <uap:DataFormat>Bitmap</uap:DataFormat>
           </uap:ShareTarget>
-        </uap:Extension>
-        <uap:Extension Category="windows.protocol" StartPage="url-protocol.html">
-          <uap:Protocol Name="yabumi" />
         </uap:Extension>
       </Extensions>
       <uap:ApplicationContentUriRules>
