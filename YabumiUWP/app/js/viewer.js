@@ -1208,37 +1208,13 @@
             y = Viewer.Stat.panY;
         }
 
-        if (vw > iw) {
-            x = 0;
-        }
-
-        if (vh > ih) {
-            y = 0;
-        }
+        // Centering if image container wider(taller) than image.
+        // Otherwise image container should be filled by image.
+        x = vw > iw ? 0 : Math.min(Math.max(x, ix), -ix);
+        y = vh > ih ? 0 : Math.min(Math.max(y, iy), -iy);
 
         var nix = ix + x,
             niy = iy + y;
-
-        // when on larger than view area.
-        if (vw <= iw) {
-            if (nix > 0) {
-                nix = 0;
-                x = -ix;
-            } else if (nix < vw - iw) {
-                nix = vw - iw;
-                x = ix;
-            }
-        }
-
-        if (vh <= ih) {
-            if (niy > 0) {
-                niy = 0;
-                y = -iy;
-            } else if (niy <= vh - ih) {
-                niy = vh - ih;
-                y = iy;
-            }
-        }
 
         Viewer.View.image.style.left = nix + 'px';
         Viewer.View.image.style.top = niy + 'px';
