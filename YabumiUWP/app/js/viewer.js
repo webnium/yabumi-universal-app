@@ -1230,7 +1230,7 @@
         if (!Viewer.Data.imageInfo.url) {
             return;
         }
-        
+
         Windows.System.Launcher.launchUriAsync(
             new Windows.Foundation.Uri(Viewer.Data.imageInfo.url + '#pin=' + Viewer.Data.imageInfo.pin)
         );
