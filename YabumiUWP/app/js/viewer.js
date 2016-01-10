@@ -279,7 +279,7 @@
 
         localStorage.setItem('window.size', [window.innerWidth, window.innerHeight].join('x'));
 
-        panImage();
+        zoomImage();
     }
 
     // onWheelHandler()
@@ -1110,7 +1110,11 @@
                 (vh > ih) ? vh / ih : 1
             ) * 5;
 
-        if (ratio === 0) {
+        if (typeof ratio === 'undefined') {
+            // use current ratio
+            // this for when maxRatio or minRatio is changed
+            ratio = oldRatio;
+        } else if (ratio === 0) {
             // fit to window
             ratio = Math.min(vw / iw, vh / ih);
         } else if (ratio === -1) {
