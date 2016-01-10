@@ -1143,11 +1143,15 @@
         }
 
         ratio = Math.max(Math.min(ratio, maxRatio), minRatio);
+        Viewer.Stat.zoom = ratio;
+
+        Viewer.Stat.panX = (Viewer.Stat.panX - dx) / oldRatio * ratio + dx;
+        Viewer.Stat.panY = (Viewer.Stat.panY - dy) / oldRatio * ratio + dy;
+
+        panImage();
 
         Viewer.View.image.style.width = (Viewer.Data.imageInfo.width * ratio) + 'px';
         Viewer.View.image.style.height = (Viewer.Data.imageInfo.height * ratio) + 'px';
-
-        Viewer.Stat.zoom = ratio;
 
         if (ratio === minRatio) {
             Viewer.Stat.zoomed = false;
@@ -1189,10 +1193,6 @@
             Viewer.View.expandButton.attr('title', _L('shortcut-fit-in-window'));
         }                                             
 
-        Viewer.Stat.panX = (Viewer.Stat.panX - dx) / oldRatio * ratio + dx;
-        Viewer.Stat.panY = (Viewer.Stat.panY - dy) / oldRatio * ratio + dy;
-
-        panImage();
     }
 
     function panImage(x, y) {
