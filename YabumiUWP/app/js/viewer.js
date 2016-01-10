@@ -1208,7 +1208,7 @@
             y = Viewer.Stat.panY;
         }
 
-        // Centering if image wider(taller) than image container.
+        // Centering if image container wider(taller) than image.
         // Otherwise image container should be filled by image.
         x = vw > iw ? 0 : Math.min(Math.max(x, ix), -ix);
         y = vh > ih ? 0 : Math.min(Math.max(y, iy), -iy);
@@ -1230,7 +1230,7 @@
         if (!Viewer.Data.imageInfo.url) {
             return;
         }
-
+        
         Windows.System.Launcher.launchUriAsync(
             new Windows.Foundation.Uri(Viewer.Data.imageInfo.url + '#pin=' + Viewer.Data.imageInfo.pin)
         );
