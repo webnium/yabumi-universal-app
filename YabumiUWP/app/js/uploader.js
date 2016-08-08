@@ -945,7 +945,7 @@
                                 }));
                             });
                         } else {
-                            return WinJS.Promise.wrapError(image);
+                            return WinJS.Promise.wrap(image);
                         }
                     } else {
                         return WinJS.Promise.wrapError(new Error(_L('failed to upload') + ' (' + statusCode + ')'));
