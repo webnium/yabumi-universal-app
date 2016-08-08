@@ -94,11 +94,13 @@
         } else if (kind === ApplicationModel.Activation.ActivationKind.voiceCommand) {
             var commandName = e.detail.detail[0].result.rulePath[0];
 
-            if (commandName === 'uploadFromCamera') {
-                location.href = 'uploader.html?camera';
-            } else if (commandName === 'uploadFromFile') {
-                location.href = 'uploader.html?file';
-            }
+            setTimeout(function () {
+                if (commandName === 'uploadFromCamera') {
+                    location.href = 'uploader.html?camera';
+                } else if (commandName === 'uploadFromFile') {
+                    location.href = 'uploader.html?file';
+                }
+            }, 100);
         }
     });
 
