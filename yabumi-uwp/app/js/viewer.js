@@ -220,13 +220,13 @@
         // H -> History
         if (!e.ctrlKey && e.keyCode === WinJS.Utilities.Key.h) {
             activated = true;
-            window.location.href = '/index.html#history';
+            window.location.href = '/app/index.html#history';
         }
 
         // : -> Settings
         if (!e.ctrlKey && e.keyCode === WinJS.Utilities.Key.semicolon) {
             activated = true;
-            window.location.href = '/index.html#settings';
+            window.location.href = '/app/index.html#settings';
         }
 
         // LEFT -> Prev
@@ -290,7 +290,13 @@
             return;
         }
 
-        if (e.ctrlKey) {
+        if (e.shiftKey) {
+            if (e.deltaY > 0) {
+                goNext();
+            } else {
+                goPrev();
+            }
+        } else {
             if (e.deltaY > 0) {
                 zoomImage(
                     -4,
@@ -303,12 +309,6 @@
                     e.offsetX - Viewer.View.imageContainer.clientWidth / 2,
                     e.offsetY - Viewer.View.imageContainer.clientHeight / 2
                 );
-            }
-        } else {
-            if (e.deltaY > 0) {
-                goNext();
-            } else {
-                goPrev();
             }
         }
     }
@@ -685,7 +685,7 @@
 
     function goBack(e) {
 
-        location.href = '/index.html';
+        location.href = '/app/index.html';
 
         e && (e.handled = true);
     }
@@ -705,7 +705,7 @@
             if (images[i] === Viewer.Data.imageInfo.id) {
                 if (images[i + 1]) {
                     // todo: speed up
-                    window.location.href = '/viewer.html?' + images[i + 1];
+                    window.location.href = '/app/viewer.html?' + images[i + 1];
                 }
             }
         }
@@ -726,7 +726,7 @@
             if (images[i] === Viewer.Data.imageInfo.id) {
                 if (images[i - 1]) {
                     // todo: speed up
-                    window.location.href = '/viewer.html?' + images[i - 1];
+                    window.location.href = '/app/viewer.html?' + images[i - 1];
                 }
             }
         }

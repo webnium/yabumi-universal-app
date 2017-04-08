@@ -75,7 +75,7 @@
         }
     };
 
-    function onKeydownHandler(e) {
+    async function onKeydownHandler(e) {
 
         var active = document.activeElement && document.activeElement.tagName;
 
@@ -97,20 +97,28 @@
         if (!e.ctrlKey && e.keyCode === WinJS.Utilities.Key.enter && active !== 'BUTTON') {
             activated = true;
             if (Page.Data.images[0] && Page.Data.images[0].id) {
-                location.href = 'viewer.html?' + Page.Data.images[0].id;
+                location.href = '/app/viewer.html?' + Page.Data.images[0].id;
             }
         }
 
         // F -> Upload from File
         if (!e.ctrlKey && e.keyCode === WinJS.Utilities.Key.f) {
             activated = true;
-            location.href = 'uploader.html?file';
+            location.href = '/app/uploader.html?file';
+        }
+
+        // S -> Take Screenshot
+        if (!e.ctrlKey && e.keyCode === WinJS.Utilities.Key.s) {
+            activated = true;
+            const ApplicationModel = Windows.ApplicationModel;
+            await ApplicationModel.FullTrustProcessLauncher.launchFullTrustProcessForCurrentAppAsync();
+            window.close();
         }
 
         // C -> Upload from Camera
         if (!e.ctrlKey && e.keyCode === WinJS.Utilities.Key.c) {
             activated = true;
-            location.href = 'uploader.html?camera';
+            location.href = '/app/uploader.html?camera';
         }
 
         // CTRL + V -> Upload from Clipboard
@@ -167,9 +175,9 @@
 
     function initAppBar() {
 
-        var appBar = $('<div/>').appendTo(Index.View.appBarContainer);
+        const appBar = $('<div/>').appendTo(Index.View.appBarContainer);
 
-        var appBarObject = new WinJS.UI.AppBar(
+        const appBarObject = new WinJS.UI.AppBar(
             appBar[0],
             {
                 data: new WinJS.Binding.List([
@@ -192,8 +200,23 @@
                             icon: 'add',
                             label: _L('from file'),
                             tooltip: _L('shortcut-pick-a-image'),
-                            onclick: function () {
-                                location.href = '/uploader.html?file';
+                            onclick: () => {
+                                location.href = '/app/uploader.html?file';
+                            }
+                        }
+                    ),
+                    new WinJS.UI.AppBarCommand(
+                        $('<button/>')[0],
+                        {
+                            section: 'primary',
+                            type: 'button',
+                            icon: 'crop',
+                            label: _L('screenshot'),
+                            tooltip: _L('shortcut-take-a-screenshot'),
+                            onclick: async () => {
+                                const ApplicationModel = Windows.ApplicationModel;
+                                await ApplicationModel.FullTrustProcessLauncher.launchFullTrustProcessForCurrentAppAsync();
+                                window.close();
                             }
                         }
                     ),
@@ -205,8 +228,8 @@
                             icon: 'camera',
                             label: _L('from camera'),
                             tooltip: _L('shortcut-take-a-picture'),
-                            onclick: function () {
-                                location.href = '/uploader.html?camera';
+                            onclick: () => {
+                                location.href = '/app/uploader.html?camera';
                             }
                         }
                     ),
@@ -218,8 +241,8 @@
                             icon: 'paste',
                             label: _L('from clipboard'),
                             tooltip: _L('shortcut-clipboard'),
-                            onclick: function () {
-                                location.href = '/uploader.html?clipboard';
+                            onclick: () => {
+                                location.href = '/app/uploader.html?clipboard';
                             }
                         }
                     )
@@ -502,7 +525,7 @@
     function createImageOnClickHander(imageId) {
 
         return function (e) {
-            location.href = 'viewer.html?' + imageId;
+            location.href = '/app/viewer.html?' + imageId;
         };
     }
 

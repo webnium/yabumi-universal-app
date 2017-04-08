@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|AnyCPU">
       <Configuration>Debug</Configuration>
@@ -38,7 +38,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>8c017c85-d618-46f2-a03f-7befc6467afa</ProjectGuid>
+    <ProjectGuid>b9399398-b6d4-4c06-9434-a29d086d7cb5</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0'">
@@ -47,50 +47,43 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).Default.props" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).props" />
   <PropertyGroup>
-    <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.15063.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>$(VersionNumberMajor).$(VersionNumberMinor)</MinimumVisualStudioVersion>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <PackageCertificateKeyFile>YabumiUWP_StoreKey.pfx</PackageCertificateKeyFile>
-    <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
+    <DefaultLanguage>ja-JP</DefaultLanguage>
+    <PackageCertificateKeyFile>yabumi-uwp_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
-    <PackageCertificateThumbprint>BB2C23C30F137A6F16177CF69810AD73A2FAE340</PackageCertificateThumbprint>
+    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>CCD0CAF90BF5D5A8ECB201AF92E70BA7914D5BAA</PackageCertificateThumbprint>
+    <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="app\css\index.history.css" />
     <Content Include="app\css\index.settings.css" />
     <Content Include="app\css\splitview.css" />
     <Content Include="app\css\uploader.css" />
     <Content Include="app\css\viewer.css" />
     <Content Include="app\css\winjs-fix.css" />
+    <Content Include="app\index.history.html" />
+    <Content Include="app\index.html" />
+    <Content Include="app\index.settings.html" />
+    <Content Include="app\js\common.js" />
     <Content Include="app\js\index.history.js" />
     <Content Include="app\js\index.js" />
-    <Content Include="app\js\common.js" />
     <Content Include="app\js\index.settings.js" />
     <Content Include="app\js\uploader.js" />
     <Content Include="app\js\url-protocol.js" />
     <Content Include="app\js\viewer.js" />
-    <Content Include="index.history.html" />
-    <Content Include="index.settings.html" />
-    <Content Include="libraries\jQuery\jquery.min.js" />
-    <Content Include="libraries\jQuery\jquery.timeago.js" />
-    <Content Include="libraries\psd.js\psd.js" />
-    <Content Include="libraries\WinJS\js\base.min.js" />
-    <Content Include="libraries\WinJS\js\base.min.js.map" />
-    <Content Include="libraries\WinJS\js\ui.min.js" />
-    <Content Include="libraries\WinJS\js\ui.min.js.map" />
-    <None Include="YabumiUWP_StoreKey.pfx" />
-    <None Include="Package.StoreAssociation.xml" />
-    <Content Include="uploader.html" />
-    <Content Include="url-protocol.html" />
-    <Content Include="viewer.html" />
-    <Content Include="index.html" />
+    <Content Include="app\uploader.html" />
+    <Content Include="app\url-protocol.html" />
+    <Content Include="app\viewer.html" />
     <Content Include="images\grasping-hand-closed.cur" />
     <Content Include="images\grasping-hand-open.cur" />
     <Content Include="images\icon-layer-visible.svg" />
@@ -123,11 +116,11 @@
     <Content Include="images\Square71x71Logo.scale-150.png" />
     <Content Include="images\Square71x71Logo.scale-200.png" />
     <Content Include="images\Square71x71Logo.scale-400.png" />
-    <Content Include="images\storelogo.scale-100.png" />
-    <Content Include="images\storelogo.scale-125.png" />
-    <Content Include="images\storelogo.scale-150.png" />
-    <Content Include="images\storelogo.scale-200.png" />
-    <Content Include="images\storelogo.scale-400.png" />
+    <Content Include="images\StoreLogo.scale-100.png" />
+    <Content Include="images\StoreLogo.scale-125.png" />
+    <Content Include="images\StoreLogo.scale-150.png" />
+    <Content Include="images\StoreLogo.scale-200.png" />
+    <Content Include="images\StoreLogo.scale-400.png" />
     <Content Include="images\thumbnail-pdf.svg" />
     <Content Include="images\thumbnail-psd.svg" />
     <Content Include="images\Wide310x150Logo.scale-100.png" />
@@ -137,18 +130,30 @@
     <Content Include="images\Wide310x150Logo.scale-400.png" />
     <Content Include="images\yabumi-mark.svg" />
     <Content Include="images\yabumi.svg" />
+    <Content Include="libraries\jQuery\jquery.min.js" />
+    <Content Include="libraries\jQuery\jquery.timeago.js" />
+    <Content Include="libraries\psd.js\psd.js" />
     <Content Include="libraries\WinJS\css\ui-dark.css" />
     <Content Include="libraries\WinJS\css\ui-light.css" />
     <Content Include="libraries\WinJS\fonts\Symbols.ttf" />
     <Content Include="libraries\WinJS\js\base.js" />
+    <Content Include="libraries\WinJS\js\base.min.js" />
+    <Content Include="libraries\WinJS\js\base.min.js.map" />
     <Content Include="libraries\WinJS\js\en-US\ui.strings.js" />
     <Content Include="libraries\WinJS\js\ui.js" />
+    <Content Include="libraries\WinJS\js\ui.min.js" />
+    <Content Include="libraries\WinJS\js\ui.min.js.map" />
+    <Content Include="yabumi-uploader.exe" />
+    <None Include="yabumi-uwp_StoreKey.pfx" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="vcd.xml" />
-    <None Include="YabumiUWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="strings\en-US\resources.resjson" />
     <PRIResource Include="strings\ja-JP\resources.resjson" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="WindowsDesktop, Version=10.0.15063.0" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
   <!-- To modify your build process, add your task inside one of the targets below then uncomment

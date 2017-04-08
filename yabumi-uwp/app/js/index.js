@@ -60,45 +60,73 @@
 
     // Activated
 
-    WinJS.Application.addEventListener('activated', function onActivated(e) {
+    WinJS.Application.addEventListener("activated", async function onActivated(e) {
 
         if (!Windows) {
             return;
         }
 
-        var ApplicationModel = Windows.ApplicationModel;
-        var Package = ApplicationModel.Package;
-        var VoiceCommandDefinitionManager = ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager;
-
-        var kind = e.detail.kind;
+        const ApplicationModel = Windows.ApplicationModel;
+     
+        const kind = e.detail.kind;
 
         if (kind === ApplicationModel.Activation.ActivationKind.launch) {
             if (typeof e.detail.arguments === 'string') {
-                var args = e.detail.arguments.split('/');
-                if (args[0] === 'viewer') {
-                    location.href = 'viewer.html?' + args[1];
-                    return;
+                console.info("arguments:", e.detail.arguments);
+
+                const [action, option] = e.detail.arguments.split('/');
+                switch (action) {
+                    case "viewer":
+                        location.href = "/app/viewer.html?" + option;
+                        return;
+                    case "take-a-screenshot":
+                        await ApplicationModel.FullTrustProcessLauncher.launchFullTrustProcessForCurrentAppAsync();
+                        window.close();
+                        return;
+                    case "take-a-picture":
+                        location.href = '/app/uploader.html?camera';
+                        return;
                 }
             }
 
-            setTimeout(function () {
-                Package.current.installedLocation
-                    .getFileAsync('vcd.xml')
-                    .then(function (file) {
-                        return VoiceCommandDefinitionManager.installCommandDefinitionsFromStorageFileAsync(file);
-                    })
-                    .done(function () {
-                        console.info('Voice Command `vcd.xml` installed.');
-                    });
+            const VoiceCommandDefinitionManager = ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager;
+            const Package = ApplicationModel.Package;
+
+            {
+                const StartScreen = Windows.UI.StartScreen;
+                const JumpList = StartScreen.JumpList;
+                const JumpListItem = StartScreen.JumpListItem;
+
+                const jumpList = await JumpList.loadCurrentAsync();
+                jumpList.items.clear();
+                {
+                    const item = JumpListItem.createWithArguments("take-a-screenshot", _L("take-a-screenshot"));
+                    item.logo = new Windows.Foundation.Uri("ms-appx:///images/Square44x44Logo.png");
+                    jumpList.items.append(item);
+                }
+                {
+                    const item = JumpListItem.createWithArguments("take-a-picture", _L("take-a-picture"));
+                    item.logo = new Windows.Foundation.Uri("ms-appx:///images/Square44x44Logo.png");
+                    jumpList.items.append(item);
+                }
+                await jumpList.saveAsync();
+
+                console.info('JumpList added.');
+            }
+
+            setTimeout(async () => {
+                const file = await Package.current.installedLocation.getFileAsync('vcd.xml');
+                await VoiceCommandDefinitionManager.installCommandDefinitionsFromStorageFileAsync(file);
+                console.info('Voice Command `vcd.xml` installed.');
             }, 5000);
         } else if (kind === ApplicationModel.Activation.ActivationKind.voiceCommand) {
-            var commandName = e.detail.detail[0].result.rulePath[0];
+            const commandName = e.detail.detail[0].result.rulePath[0];
 
-            setTimeout(function () {
+            setTimeout(() => {
                 if (commandName === 'uploadFromCamera') {
-                    location.href = 'uploader.html?camera';
+                    location.href = '/app/uploader.html?camera';
                 } else if (commandName === 'uploadFromFile') {
-                    location.href = 'uploader.html?file';
+                    location.href = '/app/uploader.html?file';
                 }
             }, 100);
         }
@@ -162,7 +190,7 @@
         $(Index.View.title).text(_L(fragmentFilename));
         $(Index.View.fragment).empty();
 
-        WinJS.UI.Fragments.renderCopy('index.' + fragmentFilename + '.html', Index.View.fragment).done(
+        WinJS.UI.Fragments.renderCopy('/app/index.' + fragmentFilename + '.html', Index.View.fragment).done(
             function (fragment) {
 
                 WinJS.UI.processAll().then(WinJS.Resources.processAll);

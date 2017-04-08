@@ -332,7 +332,7 @@
         //
         // advanced
         //
-
+        /*
         var advancedSection = $('<div/>', { 'class': 'win-settings-section' }).appendTo(container);
         $('<h2/>', { text: _L('advanced') }).appendTo(advancedSection);
         $('<p/>', { text: _L('note-api-root') }).appendTo(advancedSection);
@@ -364,6 +364,7 @@
         }).appendTo(advancedSection);
 
         $('<div/>', { css: { height: '40px' } }).appendTo(container);
+        */
     }
 
     function initPrivacyPolicyContents() {
