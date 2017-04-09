@@ -299,9 +299,9 @@
         },
         getImages: function (isIdStringOnly) {
 
-            var images = [];
+            const images = [];
 
-            var i, j, l, k, v;
+            let i, j, l, k, v;
 
             for (i = 0, l = localStorage.length; i < l; i++) {
                 // id

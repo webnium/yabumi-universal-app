@@ -698,14 +698,14 @@
             return;
         }
 
-        var i, l,
-            images = Yabumi.Util.getImages(true);
+        let images = JSON.parse(localStorage.getItem('images'));
 
-        for (i = 0, l = images.length; i < l; i++) {
-            if (images[i] === Viewer.Data.imageInfo.id) {
-                if (images[i + 1]) {
+        for (let i = 0, l = images.length; i < l; i++) {
+            if (images[i].id === Viewer.Data.imageInfo.id) {
+                if (images[i - 1]) {
                     // todo: speed up
-                    window.location.href = '/app/viewer.html?' + images[i + 1];
+                    window.location.href = '/app/viewer.html?' + images[i - 1].id;
+                    return;
                 }
             }
         }
@@ -719,14 +719,14 @@
             return;
         }
 
-        var i, l,
-            images = Yabumi.Util.getImages(true);
+        let images = JSON.parse(localStorage.getItem('images'));
 
-        for (i = 0, l = images.length; i < l; i++) {
-            if (images[i] === Viewer.Data.imageInfo.id) {
-                if (images[i - 1]) {
+        for (let i = 0, l = images.length; i < l; i++) {
+            if (images[i].id === Viewer.Data.imageInfo.id) {
+                if (images[i + 1]) {
                     // todo: speed up
-                    window.location.href = '/app/viewer.html?' + images[i - 1];
+                    window.location.href = '/app/viewer.html?' + images[i + 1].id;
+                    return;
                 }
             }
         }
@@ -1557,7 +1557,7 @@
         ++Viewer.Stat.currentLoadingCount;
         Yabumi.UI.showLoadingMask();
 
-        var xhr = new XMLHttpRequest();
+        const xhr = new XMLHttpRequest();
 
         xhr.addEventListener('load', function () {
 
@@ -1575,8 +1575,12 @@
                 return;
             }
 
+            // remove from local history
+            let images = JSON.parse(localStorage.getItem("images"));
+            images.splice(images.find(image => image.id === Viewer.Data.imageInfo.id), 1);
+            localStorage.setItem("images", JSON.stringify(images));
+            localStorage.setItem("images.updated", Date.now().toString(10));
             localStorage.removeItem(Viewer.Data.imageInfo.id);
-            localStorage.setItem('images.updated', '0');
 
             Yabumi.UI.showMessageDialog({
                 text: _L('deleted successfully'),

@@ -836,7 +836,7 @@ BOOL uploadFile(HWND hwnd, LPCTSTR fileName)
     std::string oMsg(buf.str());
 
     // WinInet を準備 (proxy は 規定の設定を利用)
-    HINTERNET hSession = InternetOpen(_T("YabumiUploaderForWindowsDesktop/1.4 Gyazowin/1.0"),
+    HINTERNET hSession = InternetOpen(_T("YabumiUWP/2 (YabumiUniversalApp) YabumiUploaderForWindowsDesktop/1.4 Gyazowin/1.0"),
         INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
     if (NULL == hSession) {
         LastErrorMessageBox(hwnd, _T("Cannot configure wininet."));

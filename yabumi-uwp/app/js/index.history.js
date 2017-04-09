@@ -284,7 +284,7 @@
 
     function findImages() {
     
-        var i, j, l, m, image,
+        let i, j, l, m, image,
             images = Yabumi.Util.getImages();
 
         for (i = 0, l = images.length; i < l; i++) {
@@ -317,7 +317,7 @@
         }
 
         if (localStorage.getItem('images') && localStorage.getItem('images.updated')) {
-            if (parseInt(localStorage.getItem('images.updated'), 10) > Date.now() - 60000) {
+            if (parseInt(localStorage.getItem('images.updated'), 10) > Date.now() - 180000) {
                 Page.Data.images = JSON.parse(localStorage.getItem('images'));
 
                 done();
@@ -329,7 +329,7 @@
 
         console.debug('history', 'getImages()', 'request', Page.Data.images.length, 'images');
 
-        var xhr = new XMLHttpRequest();
+        const xhr = new XMLHttpRequest();
 
         xhr.addEventListener('load', function () {
 
@@ -339,12 +339,12 @@
                 localStorage.setItem('images', this.responseText);
                 localStorage.setItem('images.updated', Date.now().toString(10));
 
-                var images = JSON.parse(this.responseText);
+                let images = JSON.parse(this.responseText);
 
-                Page.Data.images.forEach(function (image) {
+                Page.Data.images.forEach(image => {
 
-                    var i, l, found = false;
-                    for (i = 0, l = images.length; i < l; i++) {
+                    let found = false;
+                    for (let i = 0, l = images.length; i < l; i++) {
                         if (images[i].id === image.id) {
                             found = true;
                             break;
@@ -371,9 +371,7 @@
             done();
         });
 
-        var ids = Page.Data.images.map(function (image) {
-            return image.id;
-        });
+        const ids = Page.Data.images.map(image => image.id);
 
         xhr.open('POST', Yabumi.API.getRoot() + 'images.json');
         xhr.send('_method=get&id=' + ids.join('%2B'));
@@ -606,7 +604,7 @@
 
         var isReachedRateLimit = (
             localStorage.getItem('history.updated') &&
-            parseInt(localStorage.getItem('history.updated'), 10) > Date.now() - 60000
+            parseInt(localStorage.getItem('history.updated'), 10) > Date.now() - 180000
         );
         if (isReachedRateLimit) {
             done();

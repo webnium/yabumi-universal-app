@@ -20,6 +20,7 @@
 
         if (e.detail.kind !== Windows.ApplicationModel.Activation.ActivationKind.protocol) {
             location.href = "/app/index.html";
+            return;
         }
 
         const rawUri = e.detail.uri.rawUri;
@@ -31,22 +32,39 @@
         console.log("target:", target);
 
         if (target === "viewer" && parts[3]) {
-            setTimeout(() => {
-                location.href = "/app/viewer.html?" + parts[3];
-            }, 0);
+            location.href = "/app/viewer.html?" + parts[3];
+            return;
         }
 
         if (target === "uploaded" && parts[6]) {
             const [filename, pin] = parts[6].split("#pin=");
-            const id = filename.split(".")[0];
+            const [id, ext] = filename.split(".");
 
             console.log("filename:", filename);
             console.log("id:", id);
             console.log("pin:", pin);
+
+            // get info
+            const image = await new Promise((resolve, reject) => {
+
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", `${Yabumi.API.getRoot()}images/${id}.json`);
+                xhr.addEventListener("load", () => {
+                    if (xhr.status === 200) {
+                        resolve(JSON.parse(xhr.responseText));
+                    } else {
+                        reject();
+                    }
+                });
+                xhr.send();
+            });
             
             // add to local history
+            let images = JSON.parse(localStorage.getItem("images"));
+            images.unshift(image);
+            localStorage.setItem("images", JSON.stringify(images));
+            localStorage.setItem("images.updated", Date.now().toString(10));
             localStorage.setItem(id, pin);
-            localStorage.setItem('images.updated', '0');
 
             // add to remote history
             if (Yabumi.API.getHistoryId()) {
@@ -55,8 +73,8 @@
                     const historyId = Yabumi.API.getHistoryId();
 
                     const xhr = new XMLHttpRequest();
+                    xhr.addEventListener("load", () => resolve());
                     xhr.open("PUT", `${Yabumi.API.getRoot()}histories/${historyId}/images/${id}.json`);
-                    xhr.addEventListener('load', () => resolve());
                     xhr.send(JSON.stringify({
                         pin: pin
                     }));
@@ -64,11 +82,11 @@
             }
 
             // set expiration
-            if (Yabumi.Util.getRoamingSetting('config.defaultExpiration')) {
+            if (Yabumi.Util.getRoamingSetting("config.defaultExpiration")) {
                 await new Promise((resolve, reject) => {
 
                     let expiresAt = Date.now();
-                    const offset = parseInt(Yabumi.Util.getRoamingSetting('config.defaultExpiration'), 10);
+                    const offset = parseInt(Yabumi.Util.getRoamingSetting("config.defaultExpiration"), 10);
                     if (offset === 0) {
                         expiresAt = null;
                     } else {
@@ -76,34 +94,28 @@
                     }
 
                     var xhr = new XMLHttpRequest();
-                    xhr.addEventListener('load', () => {
-
+                    xhr.addEventListener("load", () => {
                         if (xhr.status >= 400 && xhr.status < 600) {
                             reject();
+                        } else {
+                            resolve();
                         }
-
-                        Yabumi.UI.notify({
-                            muted: true,
-                            title: filename,
-                            text: _L('notify-expiration-has-updated'),
-                            launch: `viewer/${id}`
-                        });
-
-                        resolve();
                     });
-                    xhr.open('PUT', `${Yabumi.API.getRoot()}images/${id}.json`);
+                    xhr.open("PUT", `${Yabumi.API.getRoot()}images/${id}.json`);
                     xhr.send(JSON.stringify({ pin: pin, expiresAt: expiresAt }));
                 });
             }
 
             // go
-            if (Yabumi.Util.getLocalSetting('config.openSystemBrowserAfterUpload')) {
+            if (Yabumi.Util.getLocalSetting("config.openSystemBrowserAfterUpload")) {
                 const appRoot = Yabumi.API.getRoot().replace("/api/", "/");
                 const editUrl = `${appRoot}${parts[6]}`;
                 await Windows.System.Launcher.launchUriAsync(new Windows.Foundation.Uri(editUrl));
                 window.close();
+                return;
             } else {
                 location.href = `/app/viewer.html?${id}`;
+                return;
             }
         }
     };
