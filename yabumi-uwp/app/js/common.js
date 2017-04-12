@@ -38,6 +38,12 @@
     });
 
     WinJS.Namespace.define('Yabumi.ApplicationView', {
+        close: async () => {
+
+            if (applicationView) {
+                return await applicationView.tryConsolidateAsync();
+            }
+        },
         setTitle: function (title) {
 
             if (applicationView) {

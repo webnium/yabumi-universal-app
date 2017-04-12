@@ -112,7 +112,7 @@
             activated = true;
             const ApplicationModel = Windows.ApplicationModel;
             await ApplicationModel.FullTrustProcessLauncher.launchFullTrustProcessForCurrentAppAsync();
-            window.close();
+            Yabumi.ApplicationView.close();
         }
 
         // C -> Upload from Camera
@@ -216,7 +216,7 @@
                             onclick: async () => {
                                 const ApplicationModel = Windows.ApplicationModel;
                                 await ApplicationModel.FullTrustProcessLauncher.launchFullTrustProcessForCurrentAppAsync();
-                                window.close();
+                                Yabumi.ApplicationView.close();
                             }
                         }
                     ),

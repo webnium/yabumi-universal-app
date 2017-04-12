@@ -111,7 +111,7 @@
                 const appRoot = Yabumi.API.getRoot().replace("/api/", "/");
                 const editUrl = `${appRoot}${parts[6]}`;
                 await Windows.System.Launcher.launchUriAsync(new Windows.Foundation.Uri(editUrl));
-                window.close();
+                Yabumi.ApplicationView.close();
                 return;
             } else {
                 location.href = `/app/viewer.html?${id}`;

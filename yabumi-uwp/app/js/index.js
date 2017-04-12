@@ -81,7 +81,7 @@
                         return;
                     case "take-a-screenshot":
                         await ApplicationModel.FullTrustProcessLauncher.launchFullTrustProcessForCurrentAppAsync();
-                        window.close();
+                        Yabumi.ApplicationView.close();
                         return;
                     case "take-a-picture":
                         location.href = '/app/uploader.html?camera';
@@ -242,7 +242,7 @@
         // CTRL + Q -> Quit
         if (e.ctrlKey && e.keyCode === WinJS.Utilities.Key.q) {
             activated = true;
-            window.close();
+            Yabumi.ApplicationView.close();
         }
 
         // BS -> Back
