@@ -153,7 +153,7 @@
         // CTRL + Q -> Quit
         if (e.ctrlKey && e.keyCode === WinJS.Utilities.Key.q) {
             activated = true;
-            window.close();
+            Yabumi.ApplicationView.close();
         }
 
         // CTRL + R -> Reload (for Debug)
@@ -1577,7 +1577,7 @@
 
             // remove from local history
             let images = JSON.parse(localStorage.getItem("images"));
-            images.splice(images.find(image => image.id === Viewer.Data.imageInfo.id), 1);
+            images.splice(images.findIndex(image => image.id === Viewer.Data.imageInfo.id), 1);
             localStorage.setItem("images", JSON.stringify(images));
             localStorage.setItem("images.updated", Date.now().toString(10));
             localStorage.removeItem(Viewer.Data.imageInfo.id);
