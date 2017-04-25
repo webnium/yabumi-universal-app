@@ -698,7 +698,7 @@
             return;
         }
 
-        let images = JSON.parse(localStorage.getItem('images'));
+        let images = JSON.parse(localStorage.getItem('images') || "[]");
 
         for (let i = 0, l = images.length; i < l; i++) {
             if (images[i].id === Viewer.Data.imageInfo.id) {

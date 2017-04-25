@@ -60,7 +60,7 @@
             });
             
             // add to local history
-            let images = JSON.parse(localStorage.getItem("images"));
+            let images = JSON.parse(localStorage.getItem("images") || "[]");
             images.unshift(image);
             localStorage.setItem("images", JSON.stringify(images));
             localStorage.setItem("images.updated", Date.now().toString(10));
