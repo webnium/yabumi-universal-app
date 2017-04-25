@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="442666080FC00.YabumiUploader" Version="2.0.9.0" Publisher="CN=2383AF17-10A3-447D-B221-23DE7A5711FE" />
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities" xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10" IgnorableNamespaces="uap mp rescap desktop">
+  <Identity Name="442666080FC00.YabumiUploader" ProcessorArchitecture="x86" Version="2.4.16.0" Publisher="CN=2383AF17-10A3-447D-B221-23DE7A5711FE" />
   <mp:PhoneIdentity PhoneProductId="8c017c85-d618-46f2-a03f-7befc6467afa" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Yabumi</DisplayName>
@@ -8,14 +8,15 @@
     <Logo>images\storelogo.png</Logo>
   </Properties>
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.10586.0" MaxVersionTested="10.0.11082.1000" />
+    <!-- <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.15063.0" MaxVersionTested="10.0.15063.0" /> -->
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.15063.0" MaxVersionTested="10.0.15063.0" />
   </Dependencies>
   <Resources>
     <Resource Language="en-US" />
     <Resource Language="ja-JP" />
   </Resources>
   <Applications>
-    <Application Id="Webnium.Yabumi.UWP.Index" StartPage="index.html">
+    <Application Id="Webnium.Yabumi.UWP.Index" StartPage="app/index.html">
       <uap:VisualElements DisplayName="Yabumi" Description="https://yabumi.cc/" BackgroundColor="#ec6d51" Square150x150Logo="images\Square150x150Logo.png" Square44x44Logo="images\Square44x44Logo.png">
         <uap:DefaultTile Wide310x150Logo="images\Wide310x150Logo.png" Square310x310Logo="images\Square310x310Logo.png" ShortName="Yabumi" Square71x71Logo="images\Square71x71Logo.png">
           <uap:ShowNameOnTiles>
@@ -33,10 +34,10 @@
         </uap:InitialRotationPreference>
       </uap:VisualElements>
       <Extensions>
-        <uap:Extension Category="windows.protocol" StartPage="url-protocol.html">
+        <uap:Extension Category="windows.protocol" StartPage="app/url-protocol.html">
           <uap:Protocol Name="yabumi" />
         </uap:Extension>
-        <uap:Extension Category="windows.shareTarget" StartPage="uploader.html">
+        <uap:Extension Category="windows.shareTarget" StartPage="app/uploader.html">
           <uap:ShareTarget>
             <uap:SupportedFileTypes>
               <uap:FileType>.jpg</uap:FileType>
@@ -51,29 +52,22 @@
             <uap:DataFormat>Bitmap</uap:DataFormat>
           </uap:ShareTarget>
         </uap:Extension>
+        <desktop:Extension Category="windows.fullTrustProcess" Executable="yabumi-uploader.exe" />
       </Extensions>
       <uap:ApplicationContentUriRules>
         <uap:Rule Match="https://yabumi.cc" Type="include" WindowsRuntimeAccess="none" />
-        <uap:Rule Match="https://*.private.yabumi.cc" Type="include" WindowsRuntimeAccess="none" />
       </uap:ApplicationContentUriRules>
     </Application>
     <!--
-    <Application Id="Webnium.Yabumi.UWP.Screenshot" StartPage="screenshot.html">
+    <Application Id="Webnium.Yabumi.UWP.Screenshot" Executable="yabumi-uploader.exe" EntryPoint="Windows.FullTrustApplication">
       <uap:VisualElements DisplayName="Yabumi Screenshot" Description="Yabumi Instant Screen Capturing Tool" BackgroundColor="#ec6d51" Square150x150Logo="images\Square150x150Logo.png" Square44x44Logo="images\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="images\Wide310x150Logo.png" Square310x310Logo="images\Square310x310Logo.png" ShortName="Screenshot" Square71x71Logo="images\Square71x71Logo.png">
+        <uap:DefaultTile ShortName="Screenshot" Wide310x150Logo="images\Wide310x150Logo.png" Square310x310Logo="images\Square310x310Logo.png" Square71x71Logo="images\Square71x71Logo.png">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo" />
             <uap:ShowOn Tile="wide310x150Logo" />
             <uap:ShowOn Tile="square310x310Logo" />
           </uap:ShowNameOnTiles>
         </uap:DefaultTile>
-        <uap:SplashScreen Image="images\splashscreen.png" BackgroundColor="#ec6d51" />
-        <uap:InitialRotationPreference>
-          <uap:Rotation Preference="portrait" />
-          <uap:Rotation Preference="landscape" />
-          <uap:Rotation Preference="portraitFlipped" />
-          <uap:Rotation Preference="landscapeFlipped" />
-        </uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
     -->
@@ -81,6 +75,7 @@
   <Capabilities>
     <Capability Name="internetClient" />
     <Capability Name="privateNetworkClientServer" />
+    <rescap:Capability Name="runFullTrust" />
     <DeviceCapability Name="webcam" />
   </Capabilities>
 </Package>

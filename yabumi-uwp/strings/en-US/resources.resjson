@@ -73,6 +73,8 @@
     "share": "Share",
     "print": "Print",
     "general": "General",
+    "take-a-screenshot": "Take a Screenshot",
+    "take-a-picture": "Take a Picture",
 
     "shortcut-reload": "Reload (Ctrl+R)",
     "shortcut-take-a-screenshot": "Take a Screenshot (S)",

@@ -38,6 +38,12 @@
     });
 
     WinJS.Namespace.define('Yabumi.ApplicationView', {
+        close: async () => {
+
+            if (applicationView) {
+                return await applicationView.tryConsolidateAsync();
+            }
+        },
         setTitle: function (title) {
 
             if (applicationView) {
@@ -299,9 +305,9 @@
         },
         getImages: function (isIdStringOnly) {
 
-            var images = [];
+            const images = [];
 
-            var i, j, l, k, v;
+            let i, j, l, k, v;
 
             for (i = 0, l = localStorage.length; i < l; i++) {
                 // id

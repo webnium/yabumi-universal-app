@@ -486,7 +486,7 @@
         if (Uploader.shareOperation) {
             Uploader.shareOperation.dismissUI();
         } else {
-            location.href = '/index.html';
+            location.href = '/app/index.html';
         }
 
         e && (e.handled = true);
@@ -984,7 +984,7 @@
                                 return WinJS.Promise.wrap();
                             }
                         } else {
-                            location.href = '/viewer.html?' + image.id;
+                            location.href = '/app/viewer.html?' + image.id;
                             return WinJS.Promise.wrap('navigated');
                         }
                     }
@@ -1008,7 +1008,7 @@
                     Uploader.shareOperation.reportCompleted();
                 } else {
                     if (action !== 'navigated') {
-                        location.href = '/index.html';
+                        location.href = '/app/index.html';
                     }
                 }
             },

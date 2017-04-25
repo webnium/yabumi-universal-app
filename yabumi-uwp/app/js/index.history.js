@@ -75,7 +75,7 @@
         }
     };
 
-    function onKeydownHandler(e) {
+    async function onKeydownHandler(e) {
 
         var active = document.activeElement && document.activeElement.tagName;
 
@@ -97,20 +97,28 @@
         if (!e.ctrlKey && e.keyCode === WinJS.Utilities.Key.enter && active !== 'BUTTON') {
             activated = true;
             if (Page.Data.images[0] && Page.Data.images[0].id) {
-                location.href = 'viewer.html?' + Page.Data.images[0].id;
+                location.href = '/app/viewer.html?' + Page.Data.images[0].id;
             }
         }
 
         // F -> Upload from File
         if (!e.ctrlKey && e.keyCode === WinJS.Utilities.Key.f) {
             activated = true;
-            location.href = 'uploader.html?file';
+            location.href = '/app/uploader.html?file';
+        }
+
+        // S -> Take Screenshot
+        if (!e.ctrlKey && e.keyCode === WinJS.Utilities.Key.s) {
+            activated = true;
+            const ApplicationModel = Windows.ApplicationModel;
+            await ApplicationModel.FullTrustProcessLauncher.launchFullTrustProcessForCurrentAppAsync();
+            Yabumi.ApplicationView.close();
         }
 
         // C -> Upload from Camera
         if (!e.ctrlKey && e.keyCode === WinJS.Utilities.Key.c) {
             activated = true;
-            location.href = 'uploader.html?camera';
+            location.href = '/app/uploader.html?camera';
         }
 
         // CTRL + V -> Upload from Clipboard
@@ -167,9 +175,9 @@
 
     function initAppBar() {
 
-        var appBar = $('<div/>').appendTo(Index.View.appBarContainer);
+        const appBar = $('<div/>').appendTo(Index.View.appBarContainer);
 
-        var appBarObject = new WinJS.UI.AppBar(
+        const appBarObject = new WinJS.UI.AppBar(
             appBar[0],
             {
                 data: new WinJS.Binding.List([
@@ -192,8 +200,23 @@
                             icon: 'add',
                             label: _L('from file'),
                             tooltip: _L('shortcut-pick-a-image'),
-                            onclick: function () {
-                                location.href = '/uploader.html?file';
+                            onclick: () => {
+                                location.href = '/app/uploader.html?file';
+                            }
+                        }
+                    ),
+                    new WinJS.UI.AppBarCommand(
+                        $('<button/>')[0],
+                        {
+                            section: 'primary',
+                            type: 'button',
+                            icon: 'crop',
+                            label: _L('screenshot'),
+                            tooltip: _L('shortcut-take-a-screenshot'),
+                            onclick: async () => {
+                                const ApplicationModel = Windows.ApplicationModel;
+                                await ApplicationModel.FullTrustProcessLauncher.launchFullTrustProcessForCurrentAppAsync();
+                                Yabumi.ApplicationView.close();
                             }
                         }
                     ),
@@ -205,8 +228,8 @@
                             icon: 'camera',
                             label: _L('from camera'),
                             tooltip: _L('shortcut-take-a-picture'),
-                            onclick: function () {
-                                location.href = '/uploader.html?camera';
+                            onclick: () => {
+                                location.href = '/app/uploader.html?camera';
                             }
                         }
                     ),
@@ -218,8 +241,8 @@
                             icon: 'paste',
                             label: _L('from clipboard'),
                             tooltip: _L('shortcut-clipboard'),
-                            onclick: function () {
-                                location.href = '/uploader.html?clipboard';
+                            onclick: () => {
+                                location.href = '/app/uploader.html?clipboard';
                             }
                         }
                     )
@@ -261,7 +284,7 @@
 
     function findImages() {
     
-        var i, j, l, m, image,
+        let i, j, l, m, image,
             images = Yabumi.Util.getImages();
 
         for (i = 0, l = images.length; i < l; i++) {
@@ -294,7 +317,7 @@
         }
 
         if (localStorage.getItem('images') && localStorage.getItem('images.updated')) {
-            if (parseInt(localStorage.getItem('images.updated'), 10) > Date.now() - 60000) {
+            if (parseInt(localStorage.getItem('images.updated'), 10) > Date.now() - 180000) {
                 Page.Data.images = JSON.parse(localStorage.getItem('images'));
 
                 done();
@@ -306,7 +329,7 @@
 
         console.debug('history', 'getImages()', 'request', Page.Data.images.length, 'images');
 
-        var xhr = new XMLHttpRequest();
+        const xhr = new XMLHttpRequest();
 
         xhr.addEventListener('load', function () {
 
@@ -316,12 +339,12 @@
                 localStorage.setItem('images', this.responseText);
                 localStorage.setItem('images.updated', Date.now().toString(10));
 
-                var images = JSON.parse(this.responseText);
+                let images = JSON.parse(this.responseText);
 
-                Page.Data.images.forEach(function (image) {
+                Page.Data.images.forEach(image => {
 
-                    var i, l, found = false;
-                    for (i = 0, l = images.length; i < l; i++) {
+                    let found = false;
+                    for (let i = 0, l = images.length; i < l; i++) {
                         if (images[i].id === image.id) {
                             found = true;
                             break;
@@ -348,9 +371,7 @@
             done();
         });
 
-        var ids = Page.Data.images.map(function (image) {
-            return image.id;
-        });
+        const ids = Page.Data.images.map(image => image.id);
 
         xhr.open('POST', Yabumi.API.getRoot() + 'images.json');
         xhr.send('_method=get&id=' + ids.join('%2B'));
@@ -502,7 +523,7 @@
     function createImageOnClickHander(imageId) {
 
         return function (e) {
-            location.href = 'viewer.html?' + imageId;
+            location.href = '/app/viewer.html?' + imageId;
         };
     }
 
@@ -583,7 +604,7 @@
 
         var isReachedRateLimit = (
             localStorage.getItem('history.updated') &&
-            parseInt(localStorage.getItem('history.updated'), 10) > Date.now() - 60000
+            parseInt(localStorage.getItem('history.updated'), 10) > Date.now() - 180000
         );
         if (isReachedRateLimit) {
             done();

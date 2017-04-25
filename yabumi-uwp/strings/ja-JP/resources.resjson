@@ -73,6 +73,8 @@
     "share": "共有",
     "print": "印刷",
     "general": "全般",
+    "take-a-screenshot": "スクリーンショットを撮影",
+    "take-a-picture": "写真を撮影",
 
     "shortcut-reload": "更新 (Ctrl+R)",
     "shortcut-take-a-screenshot": "スクリーンショットを撮影 (S)",
